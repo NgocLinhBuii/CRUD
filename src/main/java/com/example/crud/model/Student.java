@@ -7,10 +7,11 @@ public class Student {
     private String className;
     private double point;
 
-    public Student(String name, String email, String className) {
+    public Student(String name, String email, String className, double point) {
         this.name = name;
         this.email = email;
         this.className = className;
+        this.point = point;
     }
 
     public Student(int id, String name, String email, String className, double point) {
@@ -21,12 +22,7 @@ public class Student {
         this.point = point;
     }
 
-    public Student(String name, String email, String className, double point) {
-        this.name = name;
-        this.email = email;
-        this.className = className;
-        this.point = point;
-    }
+    // Getters and setters...
 
     public int getId() {
         return id;
@@ -68,4 +64,3 @@ public class Student {
         this.point = point;
     }
 }
-

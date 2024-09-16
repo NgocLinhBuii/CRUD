@@ -1,53 +1,51 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: BuiNgocLinh
-  Date: 30/08/2024
-  Time: 10:26 CH
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<%-- view --> control --> service --> repo --%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Danh sách lớp C0324M4</h1>
-<a href="?action=create">Thêm mới học viên</a>
-<table border="1">
-    <thead>
-    <tr>
-        <td>Tên</td>
-        <td>Email</td>
-        <td>Lớp</td>
-        <td>Điểm</td>
-        <td>Xếp loại</td>
-        <td>Chỉnh sửa</td>
-
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${studentList}" var="s">
+<div class="container">
+    <h1>Student List</h1>
+    <a href="student-servlet?action=create" class="btn-create">Add New Student</a>
+    <table class="table">
+        <thead>
         <tr>
-            <td>${s.name}</td>
-            <td>${s.email}</td>
-            <td>${s.className}</td>
-            <td>${s.point}</td>
-            <td>
-                <c:choose>
-                    <c:when test="${s.point > 9}">Giỏi</c:when>
-                    <c:when test="${s.point > 8}">Khá</c:when>
-                    <c:otherwise>Trung bình</c:otherwise>
-                </c:choose>
-            </td>
-            <td>
-                <a href="?action=update">Chỉnh sửa</a>
-            </td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Class</th>
+            <th>Point</th>
+            <th>Grade</th>
+            <th>Action</th>
         </tr>
-    </c:forEach>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        <c:forEach var="s" items="${studentList}">
+            <tr>
+                <td>${s.id}</td>
+                <td>${s.name}</td>
+                <td>${s.email}</td>
+                <td>${s.className}</td>
+                <td>${s.point}</td>
+                <td>
+                    <c:choose>
+                        <c:when test="${s.point >= 9}">Excellent</c:when>
+                        <c:when test="${s.point >= 8}">Good</c:when>
+                        <c:otherwise>Average</c:otherwise>
+                    </c:choose>
+                </td>
+                <td>
+                    <a href="student-servlet?action=update&id=${s.id}" class="btn-action">Edit</a>
+                    <a href="student-servlet?action=delete&id=${s.id}" class="btn-action btn-delete">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
-
